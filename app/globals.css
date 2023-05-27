@@ -25,3 +25,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.main-wrapper {
+  height: 100vh;
+  background-image: url("../public/sunny.jpg");
+  background-repeat: no-repeat;
+  /* background-size:contain; */
+  background-position: center;
+  background-color: grey;
+  background-blend-mode: multiply;
+}
