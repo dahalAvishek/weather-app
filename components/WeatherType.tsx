@@ -12,11 +12,6 @@ interface Props {
   hourly: Hourly;
 }
 
-interface CurrentWeather {
-  name: string;
-  weatherIcon: Element;
-}
-
 const WEATHER_CONDITIONS_FONTS = [
   <WiRain key={3} />,
   <WiSnowWind key={2} />,
@@ -32,10 +27,9 @@ const weatherObject = Object.fromEntries(
   ])
 );
 
-const WeatherType: React.FC<Props> = ({ hourly }) => {
+const WeatherType: React.FC<Props> = ({ hourly }: Props) => {
   const currentData = getCurrentData(hourly, getFormattedTime);
   const currentWeather = determineWeather(currentData);
-  console.log(currentData);
   return (
     <div>
       <div className="text-9xl">
