@@ -27,7 +27,7 @@ export default function Home() {
         {data && (
           <div className="flex justify-between">
             <WeatherType hourly={data.hourly} />
-            <Meteorological hourly={data.hourly} weatherData={data} />
+            <Meteorological hourly={data.hourly} elevation={data.elevation}/>
           </div>
         )}
       </div>

@@ -42,14 +42,14 @@ const WeatherType: React.FC<Props> = ({ hourly }) => {
         {weatherObject[currentWeather].weatherIcon}
       </div>
       <h4>{weatherObject[currentWeather].name}</h4>
-      <p> Kathmandu </p>
+      <p className="text-xl"> Kathmandu </p>
       <h2>
         {currentData.temperature_2m}
         <sup>o</sup>C
       </h2>
-      <button>
-        <MdLocationPin />
-        Change Location
+      <button className="flex gap-1">
+        <MdLocationPin className="inline my-auto"/>
+        <p className="inline text-xl">Change Location</p>
       </button>
     </div>
   );
