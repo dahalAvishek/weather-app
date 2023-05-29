@@ -5,47 +5,27 @@ export const WEATHER_CONDITIONS = {
   snow: "Snow",
   fogg: "Fogg",
   wind: "Wind",
-  overcast: "Overcast",
-  gloomy: "Gloomy",
-  hazy: "Hazy",
+  sunny: "Sunny",
 };
 
 const determineWeather = (currentData: CurrentData): string => {
   const { relativehumidity_2m, temperature_2m, windspeed_10m } = currentData;
 
-  if (relativehumidity_2m > 90) {
-    return WEATHER_CONDITIONS.rain;
+  if (relativehumidity_2m >= 80 && temperature_2m <= 0) {
+    return "snow";
+  } else if (relativehumidity_2m >= 80 && temperature_2m > 0) {
+    return "fogg";
+  } else if (relativehumidity_2m >= 60 && relativehumidity_2m < 80 && temperature_2m >= 0 && temperature_2m <= 30) {
+    if (windspeed_10m >= 15) {
+      return "wind";
+    } else {
+      return "rain";
+    }
+  } else if (relativehumidity_2m < 60 && temperature_2m >= 0 && temperature_2m <= 30) {
+    return "sunny";
+  } else {
+    return "unknown condition";
   }
-  if (temperature_2m < 0) {
-    return WEATHER_CONDITIONS.snow;
-  }
-  if (windspeed_10m > 8) {
-    return WEATHER_CONDITIONS.wind;
-  }
-  if (relativehumidity_2m > 80 && relativehumidity_2m <= 90) {
-    return WEATHER_CONDITIONS.fogg;
-  }
-  if (
-    temperature_2m >= 20 &&
-    temperature_2m <= 25 &&
-    relativehumidity_2m > 70 &&
-    relativehumidity_2m <= 80
-  ) {
-    return WEATHER_CONDITIONS.overcast;
-  }
-  if (
-    temperature_2m >= 20 &&
-    temperature_2m <= 25 &&
-    relativehumidity_2m > 60 &&
-    relativehumidity_2m <= 70
-  ) {
-    return WEATHER_CONDITIONS.gloomy;
-  }
-  if (relativehumidity_2m > 50 && relativehumidity_2m <= 60) {
-    return WEATHER_CONDITIONS.hazy;
-  }
-
-  return "Unknown";
 };
 
 export default determineWeather;

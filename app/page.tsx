@@ -7,7 +7,7 @@ import axios from "axios";
 import WeatherType from "@/components/WeatherType";
 import Temperature from "@/components/Temperature";
 import ChangeLocation from "@/components/ChangeLocation";
-import getFormattedDate from "@/utils/getCurrentData";
+
 
 const WEATHER_DATA_URL =
   "https://api.open-meteo.com/v1/forecast?latitude=27.7172&longitude=85.3240&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m";
