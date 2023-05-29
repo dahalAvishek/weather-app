@@ -5,6 +5,7 @@ import "./globals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import WeatherType from "@/components/WeatherType";
+import Meteorological from "@/components/Meteorological";
 import Temperature from "@/components/Temperature";
 import ChangeLocation from "@/components/ChangeLocation";
 
@@ -18,15 +19,16 @@ export default function Home() {
     axios.get(WEATHER_DATA_URL).then((response: any) => setData(response.data));
   }, []);
 
+  console.log("data", data)
+
   return (
     <main className="main-wrapper">
-      <div>
+      <div className="p-8">
         {data && (
-          <>
+          <div className="flex justify-between">
             <WeatherType hourly={data.hourly} />
-            <Temperature />
-            <ChangeLocation />
-          </>
+            <Meteorological hourly={data.hourly} weatherData={data} />
+          </div>
         )}
       </div>
       <div></div>

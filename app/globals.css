@@ -16,6 +16,45 @@
   }
 }
 
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -27,11 +66,32 @@ body {
 }
 
 .main-wrapper {
+  font-family: "Barlow", sans-serif;
   height: 100vh;
   background-image: url("../public/sunny.jpg");
   background-repeat: no-repeat;
   /* background-size:contain; */
   background-position: center;
-  background-color: grey;
+  background-color: rgba(56, 35, 35, 0.25);
   background-blend-mode: multiply;
+}
+
+h2,
+h3,
+h4 {
+  font-family: "Signika", sans-serif;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+h4 {
+  font-size: 3rem;
 }

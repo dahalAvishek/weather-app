@@ -6,6 +6,7 @@ import getCurrentData, {
 import determineWeather, { WEATHER_CONDITIONS } from "@/utils/determineWeather";
 import { WiFog, WiSnowWind, WiRain, WiDaySunny } from "react-icons/wi";
 import { GiWhirlwind } from "react-icons/gi";
+import { MdLocationPin } from "react-icons/md";
 
 interface Props {
   hourly: Hourly;
@@ -34,10 +35,24 @@ const weatherObject = Object.fromEntries(
 const WeatherType: React.FC<Props> = ({ hourly }) => {
   const currentData = getCurrentData(hourly, getFormattedTime);
   const currentWeather = determineWeather(currentData);
-  return <div>
-      <div className="text-9xl">{weatherObject[currentWeather].weatherIcon}</div>
-      <p className="text-5xl">{weatherObject[currentWeather].name}</p>
-    </div>;
+  console.log(currentData);
+  return (
+    <div>
+      <div className="text-9xl">
+        {weatherObject[currentWeather].weatherIcon}
+      </div>
+      <h4>{weatherObject[currentWeather].name}</h4>
+      <p> Kathmandu </p>
+      <h2>
+        {currentData.temperature_2m}
+        <sup>o</sup>C
+      </h2>
+      <button>
+        <MdLocationPin />
+        Change Location
+      </button>
+    </div>
+  );
 };
 
 export default WeatherType;

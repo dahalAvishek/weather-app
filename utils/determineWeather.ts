@@ -29,3 +29,14 @@ const determineWeather = (currentData: CurrentData): string => {
 };
 
 export default determineWeather;
+
+export function calculateRainChance(data) {
+  const hourlyData = data.hourly;
+  const rainChance = hourlyData.rain_chance;
+
+  // Calculate the average rain chance
+  const totalRainChance = rainChance.reduce((acc, value) => acc + value, 0);
+  const averageRainChance = totalRainChance / rainChance.length;
+
+  return averageRainChance;
+}
