@@ -21,10 +21,8 @@ const determineWeather = (currentData: CurrentData): string => {
     } else {
       return "rain";
     }
-  } else if (relativehumidity_2m < 60 && temperature_2m >= 0 && temperature_2m <= 30) {
-    return "sunny";
   } else {
-    return "unknown condition";
+    return "sunny";
   }
 };
 

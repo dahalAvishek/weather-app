@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import getCurrentData, {
-  getFormattedTime,
+import React, { Fragment, useState, useEffect } from "react";
+import getSelectedData, {
+  getFormattedDate,
   Hourly,
 } from "@/utils/getCurrentData";
 import calculateRainfallChance, {calculateAirPressure} from "@/utils/determineMeterological" 
@@ -9,16 +9,17 @@ import { WiHumidity, WiBarometer, WiDayStormShowers, WiStrongWind } from "react-
 interface Props {
   hourly: Hourly;
   elevation: number;
+  selectedTime: string; 
 }
 
-const Meteorological: React.FC<Props> = ({ elevation, hourly }:Props) => {
-  const currentData = getCurrentData(hourly, getFormattedTime);
-  const rainChance = calculateRainfallChance(currentData);
+const Meteorological: React.FC<Props> = ({ elevation, hourly, selectedTime }:Props) => {
+  const selectedData = getSelectedData(hourly, selectedTime);
+  const rainChance = calculateRainfallChance(selectedData);
 
   const data = [
     {
       label: "Humidity",
-      value: currentData.relativehumidity_2m,
+      value: selectedData.relativehumidity_2m,
       icon: <WiHumidity />,
       unit: " %",
     },
@@ -36,7 +37,7 @@ const Meteorological: React.FC<Props> = ({ elevation, hourly }:Props) => {
     },
     {
       label: "Wind Speed",
-      value: currentData.windspeed_10m,
+      value: selectedData.windspeed_10m,
       icon: <WiStrongWind />,
       unit: " km/h",
     },

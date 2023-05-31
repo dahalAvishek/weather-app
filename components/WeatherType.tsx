@@ -1,6 +1,6 @@
 import React from "react";
-import getCurrentData, {
-  getFormattedTime,
+import getSelectedData, {
+  getFormattedDate,
   Hourly,
 } from "@/utils/getCurrentData";
 import determineWeather, { WEATHER_CONDITIONS } from "@/utils/determineWeather";
@@ -28,7 +28,8 @@ const weatherObject = Object.fromEntries(
 );
 
 const WeatherType: React.FC<Props> = ({ hourly }: Props) => {
-  const currentData = getCurrentData(hourly, getFormattedTime);
+  const formattedTimeCurrent = getFormattedDate(new Date())
+  const currentData = getSelectedData(hourly, formattedTimeCurrent);
   const currentWeather = determineWeather(currentData);
   return (
     <div>

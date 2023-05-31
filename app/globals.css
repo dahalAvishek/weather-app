@@ -100,6 +100,10 @@ h4 {
 
 .scrollContainer {
   width: 93vw;
-  overflow-x: hidden;
+  height: 100%;
+  overflow-x: scroll;  
+}
 
+.scrollContainer::-webkit-scrollbar {
+  height: 0px;
 }
