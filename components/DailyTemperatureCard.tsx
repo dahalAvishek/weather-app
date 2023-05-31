@@ -1,10 +1,9 @@
 import React from "react";
 import { Hourly } from "@/utils/getCurrentData";
-import { calculateFeelsLike } from "@/utils/determineMeterological";
-import getSelectedData, { getFormattedHour } from "@/utils/getCurrentData";
-import { useRef } from "react";
+import getSelectedData from "@/utils/getCurrentData";
+import { useRef, useEffect } from "react";
 import "../app/globals.css";
-import clsx from "clsx";
+import TempContainer from "./TempContainer";
 
 interface Props {
   hourly: Hourly;
@@ -18,13 +17,12 @@ const DailyTemperatureCard: React.FC<Props> = ({
   setSelectedTime,
 }: Props) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const itemRefs = useRef([]);
   let scrollInterval: NodeJS.Timeout | null = null;
 
-  const feelsLike = hourly.time.map((datum) => {
-    const selectedData = getSelectedData(hourly, datum);
-    const feelsLikeTemp = calculateFeelsLike(selectedData).toFixed(0);
-    return feelsLikeTemp;
-  });
+  useEffect(() => {
+    itemRefs.current = Array.from({ length: hourly.time.length }, () => React.createRef());
+  }, [hourly.time.length]);
 
   const handleLeftScroll = () => {
     scrollInterval = setInterval(() => {
@@ -47,12 +45,6 @@ const DailyTemperatureCard: React.FC<Props> = ({
 
   const handleTimeChange = (timeString: string) => {
     setSelectedTime(timeString);
-    console.log(selectedTime);
-  };
-
-  const checkCondition = (time: string) => {
-    if (time === selectedTime) return true;
-    return false;
   };
 
   return (
@@ -66,34 +58,15 @@ const DailyTemperatureCard: React.FC<Props> = ({
         ></button>
         <div className="flex scrollContainer " ref={scrollRef}>
           {hourly.time.map((datum, index) => (
-            <div
+            <TempContainer
               key={datum}
-              className={clsx(
-                "basis-40",
-                "grow",
-                "flex-shrink-0",
-                "flex",
-                "gap-2",
-                "flex-col",
-                "cursor-pointer",
-                {
-                  "scale-105 , ": checkCondition(datum),
-                  "scale-75": !checkCondition(datum),
-                }
-              )}
-              onClick={(e) => handleTimeChange(datum)}
-            >
-              <time>{getFormattedHour(hourly.time[index])}</time>
-              <section>
-                <h2 className="inline">
-                  {hourly.temperature_2m[index].toFixed(0)}
-                </h2>
-                <h3 className="inline">
-                  <sup>o</sup>C
-                </h3>
-              </section>
-              <p>Feels like {feelsLike[index]}</p>
-            </div>
+              selectedData={getSelectedData(hourly, datum)}
+              selectedTime={selectedTime}
+              datum={datum}
+              index={index}
+              handleTimeChange={handleTimeChange}
+              itemRefs={itemRefs}
+            />
           ))}
         </div>
         <button
