@@ -65,7 +65,7 @@ const DailyTemperatureCard: React.FC<Props> = ({
 
   return (
     <div className="h-fit mt-auto">
-      <p>{getDay(selectedTime)}</p>
+      <p className="text-2xl mb-1 ml-9">{getDay(selectedTime)}</p>
       <div className="relative w-full" onMouseEnter={displayScrollButton} onMouseLeave={removeScrollButton}>
         <button
           className={clsx("absolute w-10 h-full z-10 scrollButton", {

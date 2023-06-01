@@ -26,7 +26,6 @@ export default function Home() {
     <main
       className={clsx(
         "main-wrapper",
-        "p-8",
         {
           "backgroundDay": (data?.current_weather.is_day === 1),
           "backgroundNight": (data?.current_weather.is_day === 0),
