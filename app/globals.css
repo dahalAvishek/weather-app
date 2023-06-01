@@ -70,7 +70,19 @@ body {
   font-family: "Barlow", sans-serif;
   font-weight: 400;
   height: 100vh;
+}
+
+.backgroundDay {
   background-image: url("../public/sunny.jpg");
+  background-repeat: no-repeat;
+  /* background-size:contain; */
+  background-position: center;
+  background-color: rgba(56, 35, 35, 0.25);
+  background-blend-mode: multiply;
+} 
+
+.backgroundNight {
+  background-image: url("../public/night.jpg");
   background-repeat: no-repeat;
   /* background-size:contain; */
   background-position: center;
@@ -107,3 +119,11 @@ h4 {
 .scrollContainer::-webkit-scrollbar {
   height: 0px;
 }
+
+.scrollButton {
+  background-image: radial-gradient(at 0% 50%, black 15%, transparent 100%);
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%; 
+}
+
+

@@ -1,6 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React from "react";
 import getSelectedData, {
-  getFormattedDate,
   Hourly,
 } from "@/utils/getCurrentData";
 import calculateRainfallChance, {calculateAirPressure} from "@/utils/determineMeterological" 

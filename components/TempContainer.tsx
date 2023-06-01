@@ -9,7 +9,7 @@ interface Props {
     datum: string;
     index: number;
     handleTimeChange: (timeString: string) => void;
-    itemRefs: React.MutableRefObject<HTMLDivElement | null> 
+    itemRefs: MutableRefObject<RefObject<unknown>[] | null> 
 }
 
 const TempContainer = ({selectedData, selectedTime, datum, index, handleTimeChange, itemRefs}: Props) => {
