@@ -19,12 +19,18 @@ const DailyTemperatureCard: React.FC<Props> = ({
 }: Props) => {
   const [displayVisible, setDisplayVisible] = useState<boolean>(false) 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const itemRefs = useRef<RefObject<unknown>[] | null>([]);
+  const ref=useRef(null)
   let scrollInterval: NodeJS.Timeout | null = null;
-
+  
+  
   useEffect(() => {
-    itemRefs.current = Array.from({ length: hourly.time.length }, () => React.createRef());
-  }, [hourly.time.length]);
+    scrollRef.current!.scrollTo({left: 0});
+    const parentPos = scrollRef.current?.getBoundingClientRect()
+    const childPos = ref.current?.getBoundingClientRect();
+    const scrollVal = parentPos?.left - childPos?.left;
+    console.log(scrollVal);
+    scrollRef.current!.scrollTo({left: -scrollVal - 50});
+  }, [selectedTime]);
 
   const handleLeftScroll = () => {
     scrollInterval = setInterval(() => {
@@ -78,7 +84,7 @@ const DailyTemperatureCard: React.FC<Props> = ({
               datum={datum}
               index={index}
               handleTimeChange={handleTimeChange}
-              itemRefs={itemRefs}
+              ref={ref}
             />
           ))}
         </div>

@@ -22,8 +22,6 @@ export default function Home() {
     axios.get(WEATHER_DATA_URL).then((response: any) => setData(response.data));
   }, []);
 
-  console.log(data?.current_weather.is_day===1)
-
   return (
     <main
       className={clsx(
@@ -37,7 +35,7 @@ export default function Home() {
     >
       {data && (
         <div className="h-full flex justify-between flex-wrap ">
-          <WeatherType hourly={data.hourly} />
+          <WeatherType hourly={data.hourly} setSelectedTime={setSelectedTime} />
           <Meteorological
             hourly={data.hourly}
             elevation={data.elevation}

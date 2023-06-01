@@ -10,6 +10,7 @@ import { MdLocationPin } from "react-icons/md";
 
 interface Props {
   hourly: Hourly;
+  setSelectedTime:  Dispatch<SetStateAction<string>>;
 }
 
 const WEATHER_CONDITIONS_FONTS = [
@@ -27,12 +28,17 @@ const weatherObject = Object.fromEntries(
   ])
 );
 
-const WeatherType: React.FC<Props> = ({ hourly }: Props) => {
+
+const WeatherType: React.FC<Props> = ({ hourly, setSelectedTime }: Props) => {
   const formattedTimeCurrent = getFormattedDate(new Date())
   const currentData = getSelectedData(hourly, formattedTimeCurrent);
   const currentWeather = determineWeather(currentData);
+  const handleClick= () => {
+    setSelectedTime(formattedTimeCurrent)
+    console.log("i am here")
+  }
   return (
-    <div>
+    <div onClick={handleClick} className="cursor-pointer">
       <div className="text-9xl">
         {weatherObject[currentWeather].weatherIcon}
       </div>
