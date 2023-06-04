@@ -1,3 +1,4 @@
+import Head from "next/head";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -15,15 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link name="viewport" content="width=device-width, initial-scale=1.0"  />
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@100&family=Barlow:wght@100;200;400;500;700;900&family=Poppins:wght@900&family=Signika:wght@300;500;700&display=swap"
           rel="stylesheet"
         />
-      </head>
+      </Head>
       <body className={inter.className}>{children}</body>
     </html>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import getSelectedData, {
   getFormattedDate,
   Hourly,
@@ -10,7 +10,7 @@ import { MdLocationPin } from "react-icons/md";
 
 interface Props {
   hourly: Hourly;
-  setSelectedTime:  Dispatch<SetStateAction<string>>;
+  setSelectedTime: Dispatch<SetStateAction<string>>;
 }
 
 const WEATHER_CONDITIONS_FONTS = [
@@ -28,15 +28,16 @@ const weatherObject = Object.fromEntries(
   ])
 );
 
-
 const WeatherType: React.FC<Props> = ({ hourly, setSelectedTime }: Props) => {
-  const formattedTimeCurrent = getFormattedDate(new Date())
+  const formattedTimeCurrent = getFormattedDate(new Date());
   const currentData = getSelectedData(hourly, formattedTimeCurrent);
   const currentWeather = determineWeather(currentData);
-  const handleClick= () => {
-    setSelectedTime(formattedTimeCurrent)
-    console.log("i am here")
-  }
+
+  const handleClick = () => {
+    setSelectedTime(formattedTimeCurrent);
+    console.log("i am here");
+  };
+
   return (
     <div onClick={handleClick} className="cursor-pointer">
       <div className="text-9xl">
@@ -49,7 +50,7 @@ const WeatherType: React.FC<Props> = ({ hourly, setSelectedTime }: Props) => {
         <sup>o</sup>C
       </h2>
       <button className="flex gap-1">
-        <MdLocationPin className="inline my-auto"/>
+        <MdLocationPin className="inline my-auto" />
         <p className="inline text-xl">Change Location</p>
       </button>
     </div>
