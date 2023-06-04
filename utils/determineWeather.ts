@@ -1,4 +1,4 @@
-import { CurrentData } from "./getCurrentData";
+import { SelectedData } from "./getCurrentData";
 
 export const WEATHER_CONDITIONS = {
   rain: "Rain",
@@ -8,14 +8,19 @@ export const WEATHER_CONDITIONS = {
   sunny: "Sunny",
 };
 
-const determineWeather = (currentData: CurrentData): string => {
+const determineWeather = (currentData: SelectedData): string => {
   const { relativehumidity_2m, temperature_2m, windspeed_10m } = currentData;
 
   if (relativehumidity_2m >= 80 && temperature_2m <= 0) {
     return "snow";
   } else if (relativehumidity_2m >= 80 && temperature_2m > 0) {
     return "fogg";
-  } else if (relativehumidity_2m >= 60 && relativehumidity_2m < 80 && temperature_2m >= 0 && temperature_2m <= 30) {
+  } else if (
+    relativehumidity_2m >= 60 &&
+    relativehumidity_2m < 80 &&
+    temperature_2m >= 0 &&
+    temperature_2m <= 30
+  ) {
     if (windspeed_10m >= 15) {
       return "wind";
     } else {
@@ -27,4 +32,3 @@ const determineWeather = (currentData: CurrentData): string => {
 };
 
 export default determineWeather;
-
