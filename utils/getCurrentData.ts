@@ -19,11 +19,13 @@ export const getFormattedDate = (date: Date): string => {
   return formattedDate;
 };
 
-export const getDay = (timeString:string ): string => {
-  const date = new Date(timeString); 
-  const day = new Intl.DateTimeFormat('en-US', {weekday: 'long'}).format(date);
+export const getDay = (timeString: string): string => {
+  const date = new Date(timeString);
+  const day = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+    date
+  );
   return day;
-}
+};
 
 export const getFormattedHour = (timeString: string) => {
   const date = new Date(timeString);
